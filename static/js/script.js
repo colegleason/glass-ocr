@@ -8,7 +8,7 @@
 // <span class="BRHdash"></span>
 // <span class="BRVdash"></span>
 var pictureCard = '<div class="card white"></div> <span class="TLHdash"></span> <span class="TLVdash"></span> <span class="TRHdash"></span> <span class="TRVdash"></span> <span class="BLHdash"></span> <span class="BLVdash"></span> <span class="BRHdash"></span> <span class="BRVdash"></span>';
-var textCard = '<div class="card black"><div class="cardText">Welcome to a whole new experience. <br><br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, facere, ipsam officia suscipit qui dolorum aperiam quibusdam dolor recusandae vel placeat hic id unde? Magnam, ex, nam, hic ut obcaecati quo veniam atque consequatur magni tempore sunt culpa quod libero doloremque molestias beatae quasi! A, id ad dignissimos incidunt facere nisi quae accusamus odio in sunt atque alias nemo vitae perferendis quam sapiente exercitationem nulla nesciunt. Quae, omnis, tenetur, placeat iste aperiam rerum nihil quisquam dicta corporis enim odio quo iure temporibus quos cumque adipisci et repellat neque quas blanditiis facilis culpa voluptate perferendis sapiente doloremque optio facere veritatis qui non magni aspernatur autem</div></div>';
+var textCard = '<div class="card black"><div class="cardText">We automatically upload your snapped documents to Google Drive.</div></div>';
 
 var pictureText = 'Simply snap a picture';
 var textCardText = 'And the results are instantly saved';
