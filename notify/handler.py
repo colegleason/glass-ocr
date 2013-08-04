@@ -22,6 +22,8 @@ import json
 import logging
 import webapp2
 
+import urllib2
+
 from apiclient.http import MediaIoBaseUpload
 from oauth2client.appengine import StorageByKeyName
 
@@ -74,16 +76,11 @@ class NotifyHandler(webapp2.RequestHandler):
               attachmentId=attachments[0]['id']).execute()
           resp, content = self.mirror_service._http.request(
               attachment['contentUrl'])
+          body = ''
           if resp.status == 200:
-            media = MediaIoBaseUpload(
-                io.BytesIO(content), attachment['contentType'],
-                resumable=True)
+            body = self.make_ocr_card(content, attachment['contentType'])
           else:
             logging.info('Unable to retrieve attachment: %s', resp.status)
-        body = {
-            'text': 'Echoing your shared item: %s' % item.get('text', ''),
-            'notification': {'level': 'DEFAULT'}
-        }
         self.mirror_service.timeline().insert(
             body=body, media_body=media).execute()
         # Only handle the first successful action.
@@ -91,6 +88,21 @@ class NotifyHandler(webapp2.RequestHandler):
       else:
         logging.info(
             "I don't know what to do with this notification: %s", user_action)
+
+  def make_ocr_card(self, image, content_type):
+    try:
+      r = urllib2.Request('http://ec2-54-226-175-148.compute-1.amazonaws.com:8080/process', data=image)
+      r.add_header('Content-type', content_type)
+      result = urllib2.urlopen(r, None, 10000).read()
+      logging.info("Got OCR result", result)
+      body = {
+        'text': result,
+        'notification': {'level': 'DEFAULT'}
+      }
+      return body
+    except Exception, e:
+      logging.error(e)
+      return
 
 
 NOTIFY_ROUTES = [
