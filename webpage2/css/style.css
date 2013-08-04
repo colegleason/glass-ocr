@@ -25,10 +25,12 @@ html, body, .container {
 
 .container {
 	overflow: scroll;
+	background-color: #eee;
 }
 
 header {
 	height: 67px;
+	overflow: hidden;
 	background-color: #fff;
 	-webkit-transition: background-color .5s;
 }
@@ -49,6 +51,10 @@ header li {
 	display: inline;
 	padding-right: 20px;
 	cursor: default;
+}
+
+header .logoArea {
+	margin-right: 20px;
 }
 
 header .logo {
@@ -75,14 +81,180 @@ header .headerTitle {
 /* End of header */
 
 .content {
-	padding-top: 67px;
-	background-color: red; 
 	height: calc(100% - 67px);
 }
 
+.tile {
+	width:100%; 
+	height:100%; 
+
+	position: relative;
+	overflow: hidden;
+}
+
+.tile.topShadow {
+	box-shadow: 4px -2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tile .fullImage {
+	position: absolute;
+	width: 110%;
+	margin-left: -5px;
+}
+
+.tile .over, .tile .under {
+	overflow: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+}
+
+.tile .over {
+	pointer-events: none;
+}
+
+.tile .titleArea {
+	text-align: center;
+	margin-top: 10%;
+
+	color: #fff;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.tile .titleArea .title {
+	padding: 10px 20px;
+	background-color: rgba(255, 255, 255, 0.2);
+	text-shadow: 0px 2px rgba(0, 0, 0, 0.1);
+}
+
+.tile .arrowDown {
+	margin-top: 30px;
+	text-align: center;
+
+	color: #fff;
+	font-size: 30px;
+	font-weight: 400;
+	-webkit-transform: scale(1.5, 1);
+
+	/* Fade in */
+	opacity: 0;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-name: fadein;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;  
+}
+
+@-webkit-keyframes fadein {
+  from {
+  	opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.tile .cardArea {
+	text-align: center;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	margin-left: -255px;
+	margin-top: -150px;
+}
+
+.tile .card {
+	width: 510px;
+	height: 300px;
+	margin: 0 auto;
+	padding: 40px;
+
+	text-align: left;
+}
+.tile .card .cardText {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	font-size: 32px;
+	font-weight: 100;
+	color: rgba(255, 255, 255, 0.8);
+}
+.tile .card.white {
+	/*background-color: rgba(255, 255, 255, 0.4);*/
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,.45) 0%,rgba(255,255,255,.5) 100%); /* Chrome10+,Safari5.1+ */
+}
+.tile .card.black {
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0, 0, 0, .55) 0%,rgba(0, 0, 0, .6) 100%); /* Chrome10+,Safari5.1+ */	
+}
+
+.TLHdash, .TLVdash, .TRHdash, .TRVdash, .BLHdash, .BLVdash, .BRHdash, .BRVdash {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+.TLHdash, .TRHdash, .BLHdash, .BRHdash {
+	width: 20px;
+	height: 2px;	
+}
+.TLVdash, .TRVdash, .BLVdash, .BRVdash {
+	width: 2px;
+	height: 20px;	
+}
+
+.TLHdash, .TLVdash {
+	top: 25px;
+	left: 25px;
+}
+
+.TRHdash, .TRVdash {
+	top: 25px;
+	right: 25px;
+}
+
+.BRHdash, .BRVdash {
+	bottom: 25px;
+	right: 25px;
+}
+
+.BLHdash, .BLVdash {
+	bottom: 25px;
+	left: 25px;
+}
 
 
+.tile.main {
+	background:url(../assets/seattle.jpg) center center no-repeat;
+	background-size: cover;
+}
 
+.tile.receipt {
+	background:url(../assets/receipt.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+
+/* Description */
+
+.description {
+	height: 107px;
+	background-color: #fff;
+	box-shadow: 4px 2px 5px rgba(0, 0, 0, 0.2);
+
+	padding: 40px;
+	margin-bottom: 40px;
+
+	text-align: center;
+	font-size: 30px;
+	font-weight: 100;
+}
 
 
 
@@ -103,7 +275,7 @@ html body {
 }
 
 a {
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #f9f9f9;
 	padding-bottom: 4px;
 	-webkit-transition: border-bottom .5s;
 	-webkit-transition: color .5s;
