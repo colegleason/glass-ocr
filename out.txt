@@ -1,0 +1,27 @@
+Other Platforms
+
+Tesseract may work on more exonc matiorms too vou can ewmertry comomng wt youysew, ortake a Vook at me hst oi omer om eels usmg
+Tesseract
+
+Runn ng Tesseract
+Tesseram \s a command—hne program, so ﬁrs! open a lemma‘ or command prompt The command ws used hke ms’
+
+tessemct \Imgem1me outputbase [4 mg] [—psm pagesegnode] [:onf\gf\\e. 1
+
+so baswc usage to do OCR on an wmage caHed ‘myscan pug‘ and save me resuk to ‘out or womd be‘
+tessemzt mysmmpng out
+
+ono do me same mm German’
+tessemzt mysmmpng out 4 oeu
+
+Tesseract a\so mcmdes a book mode, wmcn moauces a sDema\ HTML me mm me coordmates of each Vener ms can be used to create a
+searchatﬂe poi, usmg a too! such as Hocr2F'DF To use wt, use me ‘hoof cormg obbon, hke nus
+
+tessemct mysmmpng out hon‘
+More miormanon about me vanous opnons ws avaﬂatﬂe m me Tesseract manoage
+
+Other Languages
+
+Tesseract has been named cor many wanguages, check for your Vanguage on me oomoaos page It can a\so be named to supporl omer
+Vanguages and scnpts; co more detaﬂs see TrammgTesseract3
+
