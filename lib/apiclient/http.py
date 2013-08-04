@@ -796,7 +796,7 @@ class HttpRequest(object):
         }
     try:
       logging.debug("In upload function for next_chunk, who knows")
-      resp, content = http.request(self.resumable_uri, method='PUT',
+      resp, content = http.request(self.resumable_uri, 'PUT',
                                    body=data,
                                    headers=headers)
     except:

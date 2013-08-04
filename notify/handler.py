@@ -22,15 +22,15 @@ import json
 import logging
 import webapp2
 
-import urllib2
+import uuid
 
-
+import cloudstorage as gcs
 from google.appengine.api import urlfetch, taskqueue
 import httplib2
 
 from apiclient.http import MediaIoBaseUpload
-from oauth2client.appengine import StorageByKeyName
 
+from oauth2client.appengine import StorageByKeyName
 from model import Credentials
 import util
 
@@ -86,23 +86,17 @@ class NotifyHandler(webapp2.RequestHandler):
           resp, content = self.mirror_service._http.request(
               attachment['contentUrl'])
           if resp.status == 200:
-            media = MediaIoBaseUpload(
-               io.BytesIO(content), attachment['contentType'],
-                resumable=True)
-            drive_body = {
-              'mimeType': attachment['contentType']
-            }
-            file = self.drive_service.files().insert(
-              body=drive_body, media_body=media, ocr=True).execute()
-            file_data = self.drive_service.files().get(fileId=file['id']).execute()
-            download_url = file_data['exportLinks']['text/plain']
-            logging.info(file_data)
-            logging.info(download_url)
-            resp, content = self.drive_service._http.request(download_url)
-            if resp.status == 200:
-              logging.debug(content)
-            else:
-              logging.error(resp)
+            # write the image to Google Cloud Storage
+            id = str(uuid.uuid4())
+            filename = '/original_images/' + id
+            write_retry_params = gcs.RetryParams(backoff_factor=1.1)
+            gcs_file = gcs.open(filename, 'w',
+                                content_type=attachment['contentType'],
+                                retry_params=write_retry_params)
+            gcs_file.write(content);
+            gcs_file.close();
+            userid = data['userToken']
+            taskqueue.add(url='/preprocess', params={'id': id, 'userid': userid})
           else:
             logging.info('Unable to retrieve attachment: %s', resp.status)
         # Only handle the first successful action.
