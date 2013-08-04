@@ -1,99 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Bootswatch: United</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ubuntu orange and unique font.">
-    <meta name="author" content="Thomas Park">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<ul>
+				<li class="logoArea"><span class="logo"></span><span class="headerTitle">Vision</span> For Glass</li>
+				<li><a href="#whatisvision" class="nav">What Is Vision</a></li>
+				<li><a href="#howitworks" class="nav">How It Works</a></li>
+				<li><a href="#howigetvision" class="nav">How I Get Vision</a></li>
+			</ul>
+		</header>
+		<div class="content">
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+			<div class="tile main">
+				<div class="under"></div>
+				<div class="over">
+					<div class="titleArea">
+						<span class="title">Vision For Glass allows you to extract text from images, store the results in google drive and send back the text to your glass for later.</span>
+					</div>
+					<div class="arrowDown">v</div>
+				</div>
+			</div>
 
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/bootstrap/default/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="/static/bootstrap/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/static/bootstrap/css/bootswatch.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
+			<div class="tile receipt" name="whatisvision">
+				<div class="under"></div>
+				<div class="over">
+					<div class="cardArea">
+ 					</div>
+				</div>
+			</div>
 
-   <script type="text/javascript">
+			<div class="description receipt">
+				<span class="text"></span>
+			</div>
 
-     var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-23019901-1']);
-      _gaq.push(['_setDomainName', "bootswatch.com"]);
-        _gaq.push(['_setAllowLinker', true]);
-      _gaq.push(['_trackPageview']);
+			<div class="tile clouds topShadow" >
+				<div class="under"></div>
+				<div class="over">
+				</div>
+			</div>
 
-     (function() {
-       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-     })();
+			<div class="description">
+				<span class="text">Access your data anywhere, drive or glass, from the cloud</span>
+			</div>
 
-   </script>
+			<div class="tile network topShadow" name="howitworks">
+				<div class="under"></div>
+				<div class="over">
+					<div class="titleArea">
+						<div class="title">
+							<div class="textArea">
+								<h1>The Pipeline</h1>
+							</div>
+							<div class="imgArea">
+								<div class="glassimg" alt="">&nbsp;</div>
+								<div class="gaeimg" alt="">&nbsp;</div>
+								<div class="driveimg" alt="">&nbsp;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-  </head>
+			<div class="description">
+				The Holy Trinity: Glass, GAE, Drive
+			</div>
 
-  <body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80">
-  <!--  <script src="../js/bsa.js"></script> -->
-
-
-  <!-- Navbar
-    ================================================== -->
- <div class="navbar navbar-fixed-top">
-   <div class="navbar-inner">
-     <div class="container">
-       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-       </a>
-       <a class="brand" href="../">Visions for glass</a>
-       <div class="nav-collapse collapse" id="main-menu">
-        <ul class="nav" id="main-menu-left">
-          <li><a onclick="pageTracker._link(this.href); return false;" href="#">News</a></li>
-          <li><a id="swatch-link" href="../#gallery">Gallery</a></li>
-
-        </ul>
-       </div>
-     </div>
-   </div>
- </div>
-
-    <div class="container">
-
-      <div class="row">
-        <div class="span6">
-          <h1>Vision for glass</h1>
-          <p class="lead">Paper notes to text,email One Sec.</p>
-
-          <div class="row">
-            <div class="span12">
-              <p><img src="/static/resource/glassLady.jpg" /></p>
-              <p id="spec"></p>
-            </div>
-          </div>
-
-        </div>
-
-    </div><!-- /container -->
-
-
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/static/bootstrap/js/jquery.smooth-scroll.min.js"></script>
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/bootstrap/js/bootswatch.js"></script>
-    <hr />
-
-      <footer id="footer">
-        <p style="text-align: center;">Authored by Aug.3rd facebook Hackathon Team </p>
-        <p class="pull-right"><a href="#top">Back to top</a></p>
-      </footer>
-
-  </body>
+			<div class="description topShadow" name="howigetvision">
+				<span class="text"><a href="">See it for yourself ▶</a></span>
+			</div>
+		</div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"></script>
+	<script src="js/script.js"></script>
+</body>
 </html>
