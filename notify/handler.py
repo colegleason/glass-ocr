@@ -24,6 +24,10 @@ import webapp2
 
 import urllib2
 
+
+from google.appengine.api import urlfetch, taskqueue
+import httplib2
+
 from apiclient.http import MediaIoBaseUpload
 from oauth2client.appengine import StorageByKeyName
 
@@ -37,11 +41,16 @@ class NotifyHandler(webapp2.RequestHandler):
   def post(self):
     """Handles notification pings."""
     logging.info('Got a notification with payload %s', self.request.body)
+    urlfetch.set_default_fetch_deadline(45)
+    httplib2.Http(timeout=45)
     data = json.loads(self.request.body)
     userid = data['userToken']
     # TODO: Check that the userToken is a valid userToken.
     self.mirror_service = util.create_service(
         'mirror', 'v1',
+        StorageByKeyName(Credentials, userid, 'credentials').get())
+    self.drive_service = util.create_service(
+        'drive', 'v2',
         StorageByKeyName(Credentials, userid, 'credentials').get())
     if data.get('collection') == 'locations':
       self._handle_locations_notification(data)
@@ -76,34 +85,31 @@ class NotifyHandler(webapp2.RequestHandler):
               attachmentId=attachments[0]['id']).execute()
           resp, content = self.mirror_service._http.request(
               attachment['contentUrl'])
-          body = ''
           if resp.status == 200:
-            body = self.make_ocr_card(content, attachment['contentType'])
+            media = MediaIoBaseUpload(
+               io.BytesIO(content), attachment['contentType'],
+                resumable=True)
+            drive_body = {
+              'mimeType': attachment['contentType']
+            }
+            file = self.drive_service.files().insert(
+              body=drive_body, media_body=media, ocr=True).execute()
+            file_data = self.drive_service.files().get(fileId=file['id']).execute()
+            download_url = file_data['exportLinks']['text/plain']
+            logging.info(file_data)
+            logging.info(download_url)
+            resp, content = self.drive_service._http.request(download_url)
+            if resp.status == 200:
+              logging.debug(content)
+            else:
+              logging.error(resp)
           else:
             logging.info('Unable to retrieve attachment: %s', resp.status)
-        self.mirror_service.timeline().insert(
-            body=body, media_body=media).execute()
         # Only handle the first successful action.
         break
       else:
         logging.info(
             "I don't know what to do with this notification: %s", user_action)
-
-  def make_ocr_card(self, image, content_type):
-    try:
-      r = urllib2.Request('http://ec2-54-226-175-148.compute-1.amazonaws.com:8080/process', data=image)
-      r.add_header('Content-type', content_type)
-      result = urllib2.urlopen(r, None, 10000).read()
-      logging.info("Got OCR result", result)
-      body = {
-        'text': result,
-        'notification': {'level': 'DEFAULT'}
-      }
-      return body
-    except Exception, e:
-      logging.error(e)
-      return
-
 
 NOTIFY_ROUTES = [
     ('/notify', NotifyHandler)

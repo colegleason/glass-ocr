@@ -33,6 +33,7 @@ import sys
 import urllib
 import urlparse
 import uuid
+import logging
 
 from email.generator import Generator
 from email.mime.multipart import MIMEMultipart
@@ -737,8 +738,8 @@ class HttpRequest(object):
       if size != '*':
         start_headers['X-Upload-Content-Length'] = size
       start_headers['content-length'] = str(self.body_size)
-
-      resp, content = http.request(self.uri, self.method,
+      logging.debug("In upload function for next_chunk")
+      resp, content = http.request(self.uri, method=self.method,
                                    body=self.body,
                                    headers=start_headers)
       if resp.status == 200 and 'location' in resp:
@@ -753,6 +754,7 @@ class HttpRequest(object):
           'Content-Range': 'bytes */%s' % size,
           'content-length': '0'
           }
+      logging.debug("In upload function for next_chunk, error state")
       resp, content = http.request(self.resumable_uri, 'PUT',
                                    headers=headers)
       status, body = self._process_response(resp, content)
@@ -793,7 +795,8 @@ class HttpRequest(object):
         'Content-Length': str(chunk_end - self.resumable_progress + 1)
         }
     try:
-      resp, content = http.request(self.resumable_uri, 'PUT',
+      logging.debug("In upload function for next_chunk, who knows")
+      resp, content = http.request(self.resumable_uri, method='PUT',
                                    body=data,
                                    headers=headers)
     except:

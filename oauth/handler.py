@@ -29,9 +29,11 @@ from model import Credentials
 import util
 
 
-SCOPES = ('https://www.googleapis.com/auth/glass.timeline '
-          'https://www.googleapis.com/auth/glass.location '
-          'https://www.googleapis.com/auth/userinfo.profile')
+SCOPES = (
+  'https://www.googleapis.com/auth/drive.file '
+  'https://www.googleapis.com/auth/glass.timeline '
+  'https://www.googleapis.com/auth/glass.location '
+  'https://www.googleapis.com/auth/userinfo.profile')
 
 
 class OAuthBaseRequestHandler(webapp2.RequestHandler):
