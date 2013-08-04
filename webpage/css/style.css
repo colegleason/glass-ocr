@@ -1,12 +1,31 @@
-@font-face {
-	font-family: tallAndSkinny;
-	src: url('../font/Tall Film.ttf');
+@import url(//fonts.googleapis.com/css?family=Roboto:100,300,500);
+
+.navbar {
+	opacity: 0;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-name: fadein;
+	-webkit-animation-delay: 0s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;  
+
+	font-weight: 100;
 }
 
-/*#spec {
-	font-family: tallAndSkinny;
-	font-size: 70pt;
-	position: absolute;
-	right: 10%;
-	top: 10%;
-}*/
+/*.container {
+	visibility: hidden;
+}
+*/
+@-webkit-keyframes fadein {
+  from {
+  	opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+* {
+	font-family:Roboto, Helvetica, Helvetica Neue, Arial;
+	font-weight:100;
+}
